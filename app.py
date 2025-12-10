@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 from models.meal import Meal
 from database import db
+import os
 
+root_sql_pass = os.getenv("ROOT_SQL_PASS")
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:8SGijmpklM@localhost:3306/flask_daily_diet'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://root:{root_sql_pass}@localhost:3306/flask_daily_diet'
 app.config['SECRET_KEY'] = "your_secret_key"
 db.init_app(app)
 
